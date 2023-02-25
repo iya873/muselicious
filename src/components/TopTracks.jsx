@@ -1,8 +1,22 @@
 import React from 'react'
+import Track from './Track'
 
-const TopTracks = () => {
+import { Link } from 'react-router-dom'
+
+const TopTracks = ({tracks}) => {
+  // console.log(tracks)
   return (
-    <div>This is the Top Tracks component</div>
+    <div>
+      <h2>TOP TRACKS</h2>
+      <br />
+      <div className='container-fluid'>
+        {tracks.map((track, index) => 
+          <div key={index}>
+           <Track track={track} />
+         </div>
+       )}
+      </div>
+    </div>
   )
 }
 

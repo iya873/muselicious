@@ -8,14 +8,46 @@ import Main from './pages/Main'
 import Lyrics from './pages/Lyrics'
 import Playlists from './pages/Playlists'
 import Dashboard from './pages/Dashboard'
+import {  useState,useEffect } from 'react';
 
 function App() {
+
+  let [tracks, setTopTracks] = useState([])
+
+  useEffect(() => {
+    getTracks();
+  }, [setTopTracks])
+
+const options = {
+	method: 'GET',
+	headers: {
+			'X-RapidAPI-Key': '7651dbf5damshee51e519d85f7a3p114055jsn8a25013e673c',
+		'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
+	}
+};
+const url = 'https://shazam.p.rapidapi.com/charts/track?locale=en-US&pageSize=10&startFrom=0'
+
+
+  const getTracks = async () => {
+    try {
+      let response = await fetch(url, options);
+      let data = await response.json();
+      setTopTracks(data.tracks);
+      console.log(data.tracks)
+    } catch (err) {
+      console.error(err.message)
+    }
+    
+    
+   
+}
+
   return (
     <div className="App">
       <Header />
       <Nav />
       <Routes>
-        <Route path='/' element={<Main />} />
+        <Route path='/' element={<Main tracks={tracks} />} />
         <Route path='/lyrics' element={<Lyrics />} />
         <Route path='/playlists' element={<Playlists />} />
         <Route path='/dashboard' element={<Dashboard />} />

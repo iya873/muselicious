@@ -7,7 +7,7 @@ const TopTracks = ({tracks}) => {
   // console.log(tracks)
   return (
     <div>
-      <h2>TOP TRACKS</h2>
+      <h2 className='topTracks'>TOP TRACKS</h2>
       <br />
       <div className='container-fluid'>
         {tracks.map((track, index) => 

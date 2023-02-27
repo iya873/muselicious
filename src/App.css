@@ -1,19 +1,43 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+
 
 .container-fluid {
   display: flex;
   flex-wrap: wrap;
 }
 
-img {
-  width: 250px;
-  height: 250px;
+.card-box {
+  margin: 5rem;
+}
+
+.title {
+  font-size: 12px;
+}
+
+.topTracks {
+  text-align: left;
+  margin-left: 1rem;
+}
+
+.logo{
+  width: 45px;
+  height: 45px;
+  display: inline-block;
+  text-align: left;
+}
+
+.logo-title {
+  display:inline-block;
+  font-size: 20px;
+}
+
+.search-title{
+  text-align: center;
+}
+.track{
   margin: .5rem;
+}
+
+.card-text {
+  font-size: 10px;;
 }

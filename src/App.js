@@ -8,14 +8,16 @@ import Main from './pages/Main'
 import Lyrics from './pages/Lyrics'
 import Playlists from './pages/Playlists'
 import Dashboard from './pages/Dashboard'
+import Loading from './components/Loading';
 import {  useState,useEffect } from 'react';
 
 function App() {
 
   let [tracks, setTopTracks] = useState([])
+  let [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    getTracks();
+    getTopTracks();
   }, [setTopTracks])
 
 const options = {
@@ -28,18 +30,21 @@ const options = {
 const url = 'https://shazam.p.rapidapi.com/charts/track?locale=en-US&pageSize=10&startFrom=0'
 
 
-  const getTracks = async () => {
+  const getTopTracks = async () => {
     try {
+      setLoading(true)
       let response = await fetch(url, options);
       let data = await response.json();
+      setLoading(false)
       setTopTracks(data.tracks);
       console.log(data.tracks)
     } catch (err) {
+      setLoading(false)
       console.error(err.message)
     }
     
     
-   
+    
 }
 
   return (
@@ -47,7 +52,7 @@ const url = 'https://shazam.p.rapidapi.com/charts/track?locale=en-US&pageSize=10
       <Header />
       <Nav />
       <Routes>
-        <Route path='/' element={<Main tracks={tracks} />} />
+        {loading ? <Route path='/' element={<Loading />} /> :<Route path='/' element={<Main tracks={tracks} />} />}
         <Route path='/lyrics' element={<Lyrics />} />
         <Route path='/playlists' element={<Playlists />} />
         <Route path='/dashboard' element={<Dashboard />} />

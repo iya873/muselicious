@@ -5,10 +5,12 @@ import React from 'react'
 const Track = ({ track }) => {
   // console.log(track)
   return (
-    <div className='track'>
-      <img src={track.images.coverart} alt='cover art' />
-      <h3>{track.title}</h3>
-      <p>{track.subtitle }</p>
+    <div className='card track' style={{width: '10rem'}} >
+      <img src={track.images.coverart} className='card-img-top' alt='cover art' />
+      <div className='card-body'>
+        <h3 className='card-title title'>{track.title}</h3>
+        <p className='card-text'>{track.subtitle }</p>
+      </div>
     </div>
 	);
 }
